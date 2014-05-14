@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+ get '/login', :to => 'sessions#new', :as => :login
+get '/auth/:provider/callback', :to => 'sessions#create'
+get '/auth/failure', :to => 'sessions#failure'
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -53,4 +58,6 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  get 'auth/facebook/callback' => 'sessions#failure'
+
 end
